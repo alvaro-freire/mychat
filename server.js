@@ -1,19 +1,19 @@
 const net = require('net');
-const EventEmitter = require('events')
 const port = 8080
 
-const eventEmitter = new EventEmitter()
+const server = net.createServer((socket) => {
+    console.log('opened connection', socket.remoteAddress, socket.remotePort)
 
-eventEmitter.on('connection', socket => {
-    console.log('New connection')
-    socket.write("Welcome\n")
+    socket.on('data', (data) => {
+        console.log("wrote this: " + data)
+    })
+
+    socket.on('close', () => {
+        console.log('closed connection', socket.remoteAddress, socket.remotePort)
+    })
+
 })
 
-function handler(socket) {
-    eventEmitter.emit('connection', socket)
-}
-
-const server = net.createServer(handler)
 
 server.listen(port, () => {
     console.log('opened server on', server.address());
