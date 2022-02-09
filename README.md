@@ -18,7 +18,7 @@ SEND Hello, world!
 RECEIVE teixe Hello, world!
 ```
 > The user won't receive their own messages. The receive command receives first the username that sent the message followed by the message itself.
-Use the program ==netcat== and, once completed, you should be able to reproduce the following session:
+Use the program <mark>netcat</mark> and, once completed, you should be able to reproduce the following session:
 ```bash
 root@ubuntu~: nc localhost 8080
 USERNAME teixe                          (->)
@@ -46,7 +46,7 @@ SEND bye                                (4)
 > Numbers on the right indicate order.
 > (-) Indicates that it was automatically received by the server.
 ### Tips
-1. You can try a live working example with ==netcat== on *localhost* port 8080.
+1. You can try a live working example with <mark>netcat</mark> on *localhost* port 8080.
 2. Start with the following code:
 ```javascript
 const net = require('net');
