@@ -1,8 +1,10 @@
 const net = require('net');
 const port = 8080
+const clientList = []
 
 const server = net.createServer((socket) => {
     console.log('opened connection', socket.remoteAddress, socket.remotePort)
+    clientList.push(socket)
     username = socket.remotePort + ' '
 
     socket.on('data', (data) => {
@@ -10,7 +12,12 @@ const server = net.createServer((socket) => {
         message = String(data).replace(first + " ", '').trim()
 
         if (first == 'SEND') {
-            socket.write('RECEIVE ' + username + ' ' + message + '\n')
+            socket.write('RECEIVE port:' + username + '-> ' + message + '\n')
+
+            clientList.forEach((client) => {
+                socket.write('client port -> ' + client.remotePort + '\n')
+            })
+
         } else if (first == 'USERNAME') {
             if (message.indexOf(' ') !== -1) {
                 socket.write('ERROR invalid username\n')
@@ -27,11 +34,9 @@ const server = net.createServer((socket) => {
     })
 
     socket.on('close', () => {
+        clientList.splice(clientList.indexOf(socket), 1)
         console.log('closed connection', socket.remoteAddress, socket.remotePort)
     })
-
-
-
 })
 
 
