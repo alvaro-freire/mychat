@@ -60,3 +60,16 @@ server.listen(8080, () => {
 });
 ```
 3. Find more information about NodeJS sockets in: [https://nodejs.org/docs/latest-v16.x/api/net.html](https://nodejs.org/docs/latest-v16.x/api/net.html).
+
+<!-- LICENSE -->
+### License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+
+<!-- ACKNOWLEDGMENTS -->
+### Acknowledgments
+
+Assignment and idea came from:
+
+* [Jorge Teixe](https://github.com/jorgeteixe/)
