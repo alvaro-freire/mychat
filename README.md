@@ -5,7 +5,7 @@ This assingment consists of creating a server that allows multiple clients to ch
 Users will connect to the server in a specified port (that will be easy to configure, just changing a variable) and will talk to the server using a simple protocol defined below:
 1. When the socket is opened, the first thing a user has to do is to configure their username typing:
 ```bash
-USERNAME teixe
+USERNAME alvaro
 ```
 > The username won't accept spaces in between.
 2. To send a message, the user should type:
@@ -15,13 +15,13 @@ SEND Hello, world!
 > A user won't be allowed to send a message if they didn`t specify an username first.
 3. The user will receive peers messages with the following format:
 ```bash
-RECEIVE teixe Hello, world!
+RECEIVE alvaro Hello, world!
 ```
 > The user won't receive their own messages. The receive command receives first the username that sent the message followed by the message itself.
 Use the program `netcat` and, once completed, you should be able to reproduce the following session:
 ```bash
 root@ubuntu~: nc localhost 8080
-USERNAME teixe                          (->)
+USERNAME alvaro                          (->)
 SEND Hello, world!                      (->)
 USERNAME not valid                      (->)
 ERROR Username contains empty spaces.   (<-)
@@ -33,14 +33,14 @@ ERROR Unrecognised command.             (<-)
 Another example, this time using two connections at the same time:
 ```bash
 root@ubuntu~: nc localhost 8080
-USERNAME teixe                          (1)
+USERNAME alvaro                          (1)
 SEND hi                                 (3)
 RECEIVE jeff bye                        (-)
 ```
 ```bash
 root@ubuntu~: nc localhost 8080
 USERNAME jeff                           (2)
-RECEIVE teixe hi                        (-)
+RECEIVE alvaro hi                        (-)
 SEND bye                                (4)
 ```
 > Numbers on the right indicate order.
